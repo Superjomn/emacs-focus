@@ -5,6 +5,7 @@ from epc.server import EPCServer
 import json
 from pymongo import MongoClient
 
+
 class dictobj(dict):
     def __setattr__(self, key, value):
         self[key] = value
@@ -111,6 +112,7 @@ class Record(object):
     '''
     basic data structure.
     '''
+
     def __init__(self):
         self._data = dictobj()
         self._data.item = ""
@@ -120,13 +122,14 @@ class Record(object):
         self._data.tags = []
 
 
-
 server = EPCServer(('localhost', 8008))
+
 
 @server.register_function
 def echo(*a):
     print "hello"
     return a
+
 
 server.print_port()
 server.serve_forever()
